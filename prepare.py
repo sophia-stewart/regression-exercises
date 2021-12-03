@@ -77,3 +77,11 @@ def wrangle_telco():
     telco = clean_telco(telco)
     train, validate, test = split_telco(telco)
     return train, validate, test
+
+def scale_telco(train, validate, test):
+    mm_scaler = sklearn.preprocessing.MinMaxScaler()
+    mm_scaler.fit(train[['total_charges', 'monthly_charges']])
+    train[['total_charges_scaled', 'monthly_charges_scaled']] = mm_scaler.transform(train[['total_charges', 'monthly_charges']])
+    validate[['total_charges_scaled', 'monthly_charges_scaled']] = mm_scaler.transform(validate[['total_charges', 'monthly_charges']])
+    test[['total_charges_scaled', 'monthly_charges_scaled']] = mm_scaler.transform(test[['total_charges', 'monthly_charges']])
+    return train, validate, test
