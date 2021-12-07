@@ -34,7 +34,7 @@ def plot_categorical_and_continuous_vars(df, cat_cols, cont_cols):
     columns. It returns a stripplot, boxplot, and barplot of the inputted features.
     '''
     for cat_col, cont_col in list(itertools.product(cat_cols, cont_cols)):
-        fig = plt.figure(figsize=(12,6))
+        plt.figure(figsize=(12,6))
         plt.subplot(1, 3, 1)
         sns.stripplot(x=cat_col, y=cont_col, data=df)
         plt.subplot(1, 3, 2)
